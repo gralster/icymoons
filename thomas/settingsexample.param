@@ -1,0 +1,39 @@
+
+task           : MolecularDynamics
+
+xc_functional : PBE
+opt_strategy  : Speed # maybe change?
+page_wvfns    : 0
+
+cut_off_energy       :   700
+grid_scale           :   2.0
+fine_grid_scale      :   3.0
+finite_basis_corr    :   2			#not an option on the wiki??, should be "none" by default for NVT 
+finite_basis_npoints :   3			#default is 5
+elec_energy_tol      :   5.00e-007
+max_scf_cycles       :   100
+
+md_sample_iter       : 10
+calculate_stress     : true 			#deafult off for NVT, makes basis corrections necessary 
+
+md_ensemble          : NVT
+md_temperature       : 1000 K
+md_num_iter          : 100000 #number of steps taken
+md_delta_t           : 5.000e-004 # maybe unnecessarily small? #timestep
+md_thermostat        : Nose-Hoover # choose carefully # could also be langevin
+md_extrap            : first #reusing old wavefunction to speed up calc
+md_extrap_fit        : true
+
+#these should be turned off to check for true convergence
+md_elec_convergence_win = 2		#width of window in iterations ie no of steps value remains in #tol for
+md_elec_energy_tol      = 1.0E-5 eV
+
+BACKUP_INTERVAL      : 82800 # writes a big checkpoint file  (<seed>.check) every  23 hours
+POPN_CALCULATE       : False
+CONTINUATION         : DEFAULT # reads in <seed>.check if it exists and continues from there
+RUN_TIME : 169200 # 47 hrs | 23 hrs: 82800 
+
+iprint=1
+
+MIX_CHARGE_AMP : 0.3 
+
