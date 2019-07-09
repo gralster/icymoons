@@ -1,0 +1,4 @@
+chBondLength = 1.09
+ohBondLength = 0.98
+boxDim = 6
+number of molecules = 2
